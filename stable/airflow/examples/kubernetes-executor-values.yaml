@@ -1,0 +1,22 @@
+airflow:
+  image:
+    repository: pcc1488/docker-airflow-kubernetes-executor
+    tag: latest
+  executor: Kubernetes
+  config:
+    AIRFLOW__CORE__FERNET_KEY: 'R3r6tZ9h4M12cIshn1FSwskYd1-9_Y_S4E6hvNruAAI='
+    # Kubernetes Configuration
+    AIRFLOW__KUBERNETES__NAMESPACE: default # Or Set when you deploy with helm
+    AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY: pcc1488/docker-airflow-kubernetes-executor
+    AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG: latest
+    AIRFLOW__KUBERNETES_ENVIRONMENT_VARIABLES__AIRFLOW__CORE__FERNET_KEY: 'R3r6tZ9h4M12cIshn1FSwskYd1-9_Y_S4E6hvNruAAI='
+    AIRFLOW__KUBERNETES__DAGS_IN_IMAGE: 'True'
+
+# No need for kubernetes executor
+workers:
+  enabled: false
+redis:
+  enabled: false
+flower:
+  enabled: false
+
